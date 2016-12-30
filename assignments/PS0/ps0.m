@@ -1,5 +1,5 @@
-% Kapil Gupta <kpgupta98@gmail.com>
-% XantheLabs
+% Author: Kapil Gupta <kpgupta98@gmail.com>
+% Organization: XantheLabs
 % Created: December 2016
 
 
