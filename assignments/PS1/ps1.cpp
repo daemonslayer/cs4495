@@ -31,7 +31,7 @@ int main(int argc, char const *argv[]) {
 /**
  * Find Image Edges
  */
-  img_a = imread("../input/ps1-input3.png");
+  img_a = imread("../input/ps1-input0.png");
   namedWindow(win_name + "_a", CV_WINDOW_AUTOSIZE);
   imshow(win_name + "_a", img_a);
 
@@ -40,7 +40,6 @@ int main(int argc, char const *argv[]) {
   Mat img_a_edges = Mat(img_a.size(), img_a.type());
   canny_threshold(img_a_gray, img_a_edges);
   imwrite("../output/ps1-1-a-1.png", img_a_edges);
-
 
 /**
  * Find Lines with Hough Transform

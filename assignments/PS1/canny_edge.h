@@ -25,17 +25,17 @@ int ratio = 3;
 int kernel_size = 3;
 std::string window_name = "edge map";
 
+
+
 void canny_threshold(cv::Mat &img_a_gray, cv::Mat &img_a_edges) {
-  cv::namedWindow(window_name);
-  
-  blur(img_a_gray, img_a_edges, cv::Size(3, 3));
-  Canny(img_a_edges, img_a_edges, low_threshold, low_threshold*ratio, kernel_size);
-
   cv::Mat mask;
-  mask = cv::Scalar::all(0);
+  img_a_edges = cv::Scalar::all(0);
 
-  img_a_gray.copyTo(mask, img_a_edges);
-  cv::imshow(window_name, mask);
+  blur(img_a_gray, mask, cv::Size(3, 3));
+  Canny(img_a_gray, img_a_edges, low_threshold, low_threshold*ratio, kernel_size);
+
+  cv::namedWindow(window_name);
+  cv::imshow(window_name, img_a_edges);
 }
 
 
