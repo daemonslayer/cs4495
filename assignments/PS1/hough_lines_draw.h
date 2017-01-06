@@ -4,10 +4,23 @@
  * Created: December 2016
  */
 
+#pragma once
+
+
 #ifndef HOUGH_LINES_DRAW_H_
 #define HOUGH_LINES_DRAW_H_
 
 
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/highgui/highgui.hpp"
+#include <vector>
+#include <string>
+
+
+
+void hough_lines_draw(cv::Mat *img_a, std::string output_img, int peaks, int rho, int theta) {
+
+}
 
 
 

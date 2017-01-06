@@ -4,6 +4,9 @@
  * Created: December 2016
  */
 
+#pragma once
+
+
 #ifndef HOUGH_CIRCLES_ACC_H_
 #define HOUGH_CIRCLES_ACC_H_
 

@@ -26,7 +26,11 @@ int kernel_size = 3;
 std::string window_name = "edge map";
 
 
-
+/**
+ * [canny_threshold description]
+ * @param img_a_gray  [description]
+ * @param img_a_edges [description]
+ */
 void canny_threshold(cv::Mat &img_a_gray, cv::Mat &img_a_edges) {
   cv::Mat mask;
   img_a_edges = cv::Scalar::all(0);
@@ -37,27 +41,6 @@ void canny_threshold(cv::Mat &img_a_gray, cv::Mat &img_a_edges) {
   cv::namedWindow(window_name);
   cv::imshow(window_name, img_a_edges);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
