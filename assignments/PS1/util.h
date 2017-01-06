@@ -14,6 +14,10 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <vector>
+#include <map>
+#include <set>
+
 
 enum Color {
     NONE = 0,
@@ -58,10 +62,20 @@ std::ostream& bold_off(std::ostream& os) {
 #define __ERR_SIG_B__ std::cout << bold_on << set_color(RED) << "[#] HELP: Fuckup Happened on Line " << __LINE__ << "!!!" << set_color(NONE) << bold_off << std::endl
 #define __PLINE__ std::cout << set_color(RED) << __LINE__ << set_color(NONE)<< std::endl
 
+void props(std::set<std::pair< std::string, double> > prop_set) {
+  std::set< std::pair<std::string, double> >::iterator itr;
+  std::cout << set_color(GREEN);
+
+  for (itr = prop_set.begin(); itr != prop_set.end(); ++itr) {
+    std::cout << itr->first << " : " << itr->second << std::endl;
+  }
+
+  std::cout << set_color(NONE);
+}
 
 
 void title(std::string header_str) {
-  std::cout << bold_on << set_color(CYAN) << "[#] " << header_str << " : DONE" << set_color(NONE) << bold_off << std::endl;
+  std::cout << bold_on << set_color(CYAN) << "[#] " << header_str << set_color(NONE) << bold_off << std::endl;
 }
 
 void stat_comp(std::string feature) {
