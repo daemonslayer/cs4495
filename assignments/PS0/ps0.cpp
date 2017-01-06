@@ -16,6 +16,7 @@ using namespace cv;
 
 
 int main(int argc, char const *argv[]) {
+  cout << "[!] Problem Set 0" << endl;
   string win_name = "PS0";
   Mat img_a;
   Mat img_b;
