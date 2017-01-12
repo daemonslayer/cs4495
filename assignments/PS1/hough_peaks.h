@@ -14,17 +14,14 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include <vector>
+#include "util.h"
 
 
-
-std::vector<int> hough_peaks(int H, int vararg_in) {
-  std::vector<int> pos;
-
-
-
-
-
-  return pos;
+bool hough_peaks(std::vector<std::vector<int> > &hough_acc, std::vector<std::vector<int> > &peaks, int lines_detected) {
+  for (size_t i = 0; i < lines_detected; i++) {
+    
+  }
+  return true;
 }
 
 

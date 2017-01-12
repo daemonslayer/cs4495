@@ -39,8 +39,12 @@ int main(int argc, char const *argv[]) {
   Mat img_a_gray;
   cvtColor(img_a, img_a_gray, CV_BGR2GRAY );
   stat_comp("color to gray");
+
+  Mat img_a_blur = Mat(img_a.size(), img_a.type(), CV_32SC1);
+  GaussianBlur(img_a_gray, img_a_blur, Size(5, 5), 0, 0);
+
   Mat img_a_edges = Mat(img_a.size(), img_a.type(), CV_32SC1);
-  canny_threshold(img_a_gray, img_a_edges);
+  canny_threshold(img_a_blur, img_a_edges);
   stat_comp("edge detection");
 
   imwrite("../output/ps1-1-a-1.png", img_a_edges);
@@ -50,26 +54,39 @@ int main(int argc, char const *argv[]) {
  */
   int col_l = img_a_edges.cols;
   int row_l = img_a_edges.rows;
-  int dia_l = sqrt(pow(col_l, 2) + pow(row_l, 2));
+  int dia_l = static_cast<int>(ceil(sqrt(pow(col_l, 2) + pow(row_l, 2))));
 
-  std::vector<std::vector<int> > hough_acc(dia_l, std::vector<int>(180, 0));
   std::vector<double> rhos;
   std::vector<double> thetas;
 
-  for (int i = -dia_l; i < dia_l; i++) {
+  int rho_resolution = 1;
+  int theta_resolution = 1;
+ 
+  for (int i = -dia_l; i < dia_l; i+=rho_resolution) {
     rhos.push_back(i);
   }
-  for (int i = -90; i < 90; i++) {
+  for (int i = -90; i < 90; i+=theta_resolution) {
     double buff = (i * M_PI / 180);
     thetas.push_back(buff);
   }
 
-  int rho_resolution = 1;
-  int theta_resolution = 1;
+  std::vector<std::vector<int> > hough_acc(rhos.size(), std::vector<int>(thetas.size(), 0));
 
   if (hough_lines_acc(img_a_edges, hough_acc, thetas, rhos, rho_resolution, theta_resolution)) {
     stat_comp("hough lines");
   }
+
+/**
+ * Find Peaks
+ */
+  std::vector<std::vector<int> > peaks(rhos.size(), std::vector<int>(thetas.size(), 0));
+  peaks = hough_acc;
+  int lines_detected = 10;
+
+  if(hough_peaks(hough_acc, peaks, lines_detected)) {
+    stat_comp("hough peaks");
+  }
+
 
   waitKey(0);
   return 0;

@@ -17,7 +17,14 @@
 #include <string>
 
 
-
+/**
+ * [hough_lines_draw description]
+ * @param img_a      [description]
+ * @param output_img [description]
+ * @param peaks      [description]
+ * @param rho        [description]
+ * @param theta      [description]
+ */
 void hough_lines_draw(cv::Mat *img_a, std::string output_img, int peaks, int rho, int theta) {
 
 }

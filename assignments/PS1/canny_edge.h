@@ -19,10 +19,10 @@
  */
 
 int edge_thresh = 1;
-int low_threshold;
+int low_threshold = 100;
 int const max_low_threshold = 100;
-int ratio = 3;
-int kernel_size = 3;
+int ratio = 2;
+int kernel_size = 5;
 std::string window_name = "edge map";
 
 

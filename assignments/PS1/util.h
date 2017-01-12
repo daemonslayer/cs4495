@@ -82,8 +82,17 @@ void stat_comp(std::string feature) {
   std::cout << bold_on << set_color(BLUE) << "[+] " << feature << " : DONE" << set_color(NONE) << bold_off << std::endl;
 }
 
+void test(std::string test_str) {
+  std::cout << bold_on << set_color(YELLOW) << "[$] " << test_str << " : TESTING" << set_color(NONE) << bold_off << std::endl;
+}
 
+void logger(std::string log_str) {
 
+}
+
+void err_report(std::string err_str) {
+  std::cout << bold_on << set_color(RED) << "[-] " << err_str << " : ERROR" << set_color(NONE) << bold_off << std::endl;
+}
 
 
 #endif  // UTIL_H_
