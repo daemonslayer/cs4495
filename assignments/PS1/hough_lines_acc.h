@@ -20,9 +20,16 @@
 #include "util.h"
 
 /**
- * [hough_lines_acc ]
- * @param img_a_edges [image containing edge pixels]
- * @param hough_acc   [hough accumulator array]
+ * @brief      { function_description }
+ *
+ * @param[in]  img_a_edges       The image a edges
+ * @param      hough_acc         The hough acc
+ * @param      thetas            The thetas
+ * @param      rhos              The rhos
+ * @param[in]  rho_resolution    The rho resolution
+ * @param[in]  theta_resolution  The theta resolution
+ *
+ * @return     { description_of_the_return_value }
  */
 bool hough_lines_acc(cv::Mat img_a_edges, std::vector<std::vector<int> > &hough_acc, \
    std::vector<double> &thetas, std::vector<double> &rhos, int rho_resolution, int theta_resolution) {
@@ -72,7 +79,7 @@ bool hough_lines_acc(cv::Mat img_a_edges, std::vector<std::vector<int> > &hough_
   // scale the intensity values to get better observations
   // equalizeHist(img_mat, img_mat);
 
-  imwrite("../output/ps1-­2-­b-­1.png", img_mat);
+  imwrite("../output/ps1-­2-­a-­1.png", img_mat);
   return true;
 }
 

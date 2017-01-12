@@ -61,7 +61,7 @@ int main(int argc, char const *argv[]) {
 
   int rho_resolution = 1;
   int theta_resolution = 1;
- 
+
   for (int i = -dia_l; i < dia_l; i+=rho_resolution) {
     rhos.push_back(i);
   }
@@ -79,13 +79,22 @@ int main(int argc, char const *argv[]) {
 /**
  * Find Peaks
  */
-  std::vector<std::vector<int> > peaks(rhos.size(), std::vector<int>(thetas.size(), 0));
+  int n_lines_detected = 10;
+  std::vector<std::vector<int> > peaks(n_lines_detected, std::vector<int> (2, 0));
   peaks = hough_acc;
-  int lines_detected = 10;
 
-  if(hough_peaks(hough_acc, peaks, lines_detected)) {
-    stat_comp("hough peaks");
-  }
+  if(!hough_peaks(hough_acc, peaks, n_lines_detected)) {
+    err_report("hough peaks");
+  } else stat_comp("hough peaks");
+
+
+/**
+ * Draw Lines
+ */
+  string output_img = "ps1-­2-­c-­1.png";
+  if(!hough_lines_draw(img_a, output_img, peaks)) {
+    err_report("hough lines draw");
+  } else stat_comp("hough lines draw");
 
 
   waitKey(0);
