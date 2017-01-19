@@ -35,11 +35,13 @@ typedef struct{
  *
  * @return     { description_of_the_return_value }
  */
-bool hough_peaks(std::vector<std::vector<int> > &hough_acc, std::vector<std::vector<int> > &indicies, int n_lines_detected) {
+bool hough_peaks(std::vector<std::vector<int> > &hough_acc, std::vector<std::vector<int> > &indicies, \
+    int n_lines_detected, int window_size) {
   std::vector<std::vector<int> > peaks(hough_acc.size(), std::vector<int> (hough_acc[0].size(), 0));
   peaks = hough_acc;
   std::vector<Pix> peak_val(n_lines_detected, {0, 0, 0});
   Pix max_buf = {0, 0, 0};
+
   for (size_t n = 0; n < n_lines_detected; n++) {
     for (size_t r = 0; r < peaks.size(); r++) {
       for (size_t c = 0; c < peaks[0].size(); c++) {
@@ -52,6 +54,29 @@ bool hough_peaks(std::vector<std::vector<int> > &hough_acc, std::vector<std::vec
         }
       }
     }
+
+    for (size_t r = max_buf.row - (window_size/2); r < max_buf.row + (window_size/2); r++) {
+      for (size_t c = max_buf.col - (window_size/2); c < max_buf.col + (window_size/2); c++) {
+        if(r < 0) {
+          r = 0;
+        }
+
+        if(c < 0) {
+          c = 0;
+        }
+
+        if(r > peaks.size()) {
+          continue;
+        }
+
+        if(c > peaks[0].size()) {
+          continue;
+        }
+
+        peaks[r][c] = 0;
+      }
+    }
+
     peak_val[n] = max_buf;
     peaks[max_buf.row][max_buf.col] = std::numeric_limits<int>::min();
     max_buf = {0, 0, 0};
@@ -68,6 +93,14 @@ bool hough_peaks(std::vector<std::vector<int> > &hough_acc, std::vector<std::vec
 
   // scale the intensity values to get better observations
   // equalizeHist(img_mat, img_mat);
+
+  // for (int i = 0; i < n_lines_detected; ++i) {
+  //   props({
+  //     {"value", peak_val[i].value},
+  //     {"rho", peak_val[i].row},
+  //     {"theta", peak_val[i].col}
+  //   });
+  // }
 
   for (int i = 0; i < n_lines_detected; ++i) {
     indicies[i][0] = peak_val[i].row;

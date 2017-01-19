@@ -72,7 +72,7 @@ int main(int argc, char const *argv[]) {
 
   std::vector<std::vector<int> > hough_acc(rhos.size(), std::vector<int>(thetas.size(), 0));
 
-  if (hough_lines_acc(img_a_edges, hough_acc, thetas, rhos, rho_resolution, theta_resolution)) {
+  if (hough_lines_acc(img_a_edges, hough_acc, thetas, rhos)) {
     stat_comp("hough lines");
   }
 
@@ -83,7 +83,8 @@ int main(int argc, char const *argv[]) {
   std::vector<std::vector<int> > peaks(n_lines_detected, std::vector<int> (2, 0));
   peaks = hough_acc;
 
-  if(!hough_peaks(hough_acc, peaks, n_lines_detected)) {
+  int window_size = 30;
+  if(!hough_peaks(hough_acc, peaks, n_lines_detected, window_size)) {
     err_report("hough peaks");
   } else stat_comp("hough peaks");
 
@@ -97,6 +98,6 @@ int main(int argc, char const *argv[]) {
   } else stat_comp("hough lines draw");
 
 
-  waitKey(0);
+  waitKey(500);
   return 0;
 }

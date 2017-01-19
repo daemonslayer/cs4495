@@ -38,7 +38,7 @@ void canny_threshold(cv::Mat &img_a_gray, cv::Mat &img_a_edges) {
   blur(img_a_gray, mask, cv::Size(3, 3));
   Canny(img_a_gray, img_a_edges, low_threshold, low_threshold*ratio, kernel_size);
 
-  cv::namedWindow(window_name);
+  cv::namedWindow(window_name, CV_WINDOW_AUTOSIZE);
   cv::imshow(window_name, img_a_edges);
 }
 

@@ -29,10 +29,10 @@
  * @param[in]  rho_resolution    The rho resolution
  * @param[in]  theta_resolution  The theta resolution
  *
- * @return     { description_of_the_return_value }
+ * @return     { bool value describing the success of hough lines }
  */
 bool hough_lines_acc(cv::Mat img_a_edges, std::vector<std::vector<int> > &hough_acc, \
-   std::vector<double> &thetas, std::vector<double> &rhos, int rho_resolution, int theta_resolution) {
+   std::vector<double> &thetas, std::vector<double> &rhos) {
   int img_w = img_a_edges.cols;
   int img_h = img_a_edges.rows;
   int img_dia = static_cast<int>(ceil(sqrt(pow(img_w, 2) + pow(img_h, 2))));
